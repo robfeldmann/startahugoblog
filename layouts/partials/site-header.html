@@ -1,0 +1,34 @@
+
+		<header>
+		{{- partial "site-nav.html" . }}
+			<h1>
+				{{- if eq .Kind "taxonomy" -}}
+					{{- if eq .Type "categories" -}}
+						<img alt="" class="icon" role="presentation" src="/images/post-categories.svg">
+					{{- else if eq .Type "tags" -}}
+					<img alt="" class="icon" role="presentation" src="/images/post-tags.svg">
+					{{- end -}}
+				{{- end -}}
+
+				{{- if .IsHome -}}
+					{{- if .Title -}}
+						{{ .Title }}
+					{{- else -}}
+						{{ .Site.Title }}
+					{{- end -}}
+				{{- else -}}
+					{{ .Title }}
+				{{- end -}}
+			</h1>
+			<p>
+				{{- if .IsHome -}}
+					{{- if .Description -}}
+						{{ .Description }}
+					{{- else -}}
+						{{ .Site.Params.description }}
+					{{- end -}}
+				{{- else -}}
+					{{ .Description }}
+				{{- end -}}
+			</p>
+		</header>

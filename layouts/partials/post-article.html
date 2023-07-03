@@ -1,0 +1,5 @@
+<article>
+	<a class="post-link" href="{{ .Permalink }}">{{ .Title }}</a>
+	<p class="meta"><i>{{ .Description }}</i></p>
+	<p class="meta">{{ .Date | time.Format ":date_medium" }}</p> <!-- Formatting help: https://gohugo.io/functions/format/#gos-layout-string -->
+</article>

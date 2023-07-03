@@ -1,0 +1,10 @@
+{{- if ne .File.BaseFileName "404" -}}
+<p class="meta">
+				Published on: <strong>{{ .Date | time.Format ":date_medium" }}</strong><br>
+	{{- $context := . -}}
+	{{- $taxonomies := slice "categories" "tags" -}}
+	{{- range $taxonomies -}}
+		{{- partial "post-meta-terms.html" (dict "context" $context "taxonomy" .) -}}
+	{{ end }}
+			</p>
+{{- end -}}

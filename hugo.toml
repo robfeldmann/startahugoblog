@@ -1,0 +1,23 @@
+baseURL = ''
+defaultContentLanguage = 'en'
+languageCode = 'en_US'
+timeZone = 'America/New_York'
+title = 'Start a Hugo Blog'
+[markup]
+  [markup.goldmark]
+		[markup.goldmark.renderer]
+			hardWraps = true # Render newlines as `<br>`
+			unsafe = false
+[menu]
+	[[menu.main]]
+		name = 'Home'
+		pageref = '/'
+		weight = 10
+	[[menu.main]]
+		name = 'Blog'
+		pageref = '/blog'
+		weight = 20
+[params]
+	description = "Go on, do it right now - it's the best thing you can do on the web."
+[social]
+	twitter = ''

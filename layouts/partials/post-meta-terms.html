@@ -1,0 +1,21 @@
+{{/*
+	A partial to generate a post's meta for the given taxonomy.
+
+	Argument: A dictionary with a context key and a taxonomy key.
+
+	Example: Call this partial like so for the tags taxonomy:
+		{{ partial "post-meta-terms.html" (dict "context" . "taxonomy" "tags") }}
+*/}}
+{{- $taxonomy := .taxonomy -}}
+{{- if $taxonomy -}}
+	{{- with .context.GetTerms $taxonomy -}}
+		{{- $termLabel := cond (eq (len .) 1) ($taxonomy | singularize ) ($taxonomy | pluralize )
+			| strings.FirstUpper
+		}}
+				<img alt="{{ $termLabel }}" class="icon" role="img" src="/images/post-{{ $taxonomy }}.svg" title="{{ $termLabel }}">
+		{{- range $index, $category := . -}}
+			{{- if gt $index 0 }}, {{end -}}
+			<a href="{{ $category.RelPermalink }}">{{ $category.LinkTitle }}</a>
+		{{- end -}}
+	{{- end -}}
+{{- end -}}

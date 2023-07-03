@@ -1,0 +1,30 @@
+{{- define "main" -}}
+	{{- .Content -}}
+
+	<a name="top"></a>
+	{{- if not (eq (len $.Data.Terms) 0) }}
+			<nav>
+				<ul>
+					{{- range .Data.Terms.Alphabetical }}
+					<li><a href="#{{ .Page.Title | urlize}}" {{ if eq (.Page.Data.Term | urlize) (.Term | urlize) }} class="current" {{
+							end }}>{{ .Page.Title }} <span class="badge">{{ .Count }}</span></a></li>
+					{{- end }}
+				</ul>
+			</nav>
+
+		{{- range .Data.Terms.Alphabetical }}
+			<section>
+				<h3>
+					<a name="{{ .Page.Title | urlize }}"></a>{{ .Page.Title}}
+					<span class="badge">{{ .Count }}</span>
+				</h3>
+				<ul>
+					{{ range .Pages -}}
+					{{ partial "post-article.html" . }}
+					{{- end }}
+				</ul>
+				<a href="#top"><small>back to top</small></a>
+			</section>
+		{{- end -}}
+	{{- end -}}
+{{- end -}}
